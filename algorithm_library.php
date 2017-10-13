@@ -42,10 +42,9 @@
 
     function showBoard($board)
     {
-        foreach ($board->getBoxes() as $box) {
-            $box->showCells();
-            echo '
-            ';
-        }
+        echo '
+        ';
+        echo "TABLERO: \n";
+        $board->print();
     }
 ?>

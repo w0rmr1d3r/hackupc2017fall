@@ -48,4 +48,17 @@
             ';
         }
     }
+
+    function resolveCell(&$cell)
+    {
+        if ($cell->getRemainingOptions() == 1)
+        {
+            $cell->setNumber(array_search(true, $cell->getOptions()) + 1);
+        }
+    }
+
+    function resolveBox(&$box)
+    {
+
+    }
 ?>

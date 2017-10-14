@@ -55,7 +55,6 @@
             if ($cell->getRemainingOptions() == 1)
             {
                 $cell->setNumber(array_search(True, $cell->getOptions()) + 1);
-                var_dump("cell resolved");
             }
         }
     }

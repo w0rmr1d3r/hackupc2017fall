@@ -1,2 +1,3 @@
 # hackupc2017fall
-spaghetti code for this hackathon
+Repo for the hackupc fall 2017.
+Coding with osceringes (see contributors)

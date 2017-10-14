@@ -46,20 +46,6 @@
         ';
         echo "TABLERO: \n";
         $board->print();
-
-
-
-        //DEBUG
-        removeOptionsCol($board, 1);
-        removeOptionsRow($board, 1);
-
-        for ($i=0; $i < 9; $i++) { 
-            removeOptionsCol($board, $i);
-            removeOptionsRow($board, $i);
-        }
-        resolveTodo($board);
-        echo"\n";
-        $board->print();
     }
 
     function resolveCell(&$cell)
@@ -99,13 +85,19 @@
         }
     }
 
-    function resolveTodo(&$board){
-        //removeOptionsRow($board, $row);
+    function resolveBoard(&$board){
 
-        foreach ($board->getBoxes() as $box) {
-            foreach ($box->getCells() as $cell) {
-                $cell->resolve();
+        foreach ($board->getBoxes() as $box)
+        {
+            foreach ($box->getCells() as $cell)
+            {
+                resolveCell($cell);
             }
+        }
+
+        foreach ($board->getBoxes() as $box)
+        {
+            resolveBox($box);
         }
     }
 

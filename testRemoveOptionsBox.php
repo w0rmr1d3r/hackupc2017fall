@@ -16,4 +16,5 @@
     //var_dump($box->getCell(4));
     //var_dump($box->getCell(6));
     //var_dump($box->getCell(8));
+    var_dump($box);
 ?>

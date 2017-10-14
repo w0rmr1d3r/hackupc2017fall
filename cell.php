@@ -12,22 +12,6 @@
             $this->remainingOptions = 9;
         }
 
-        public function resolve()
-        {
-            if ($this->remainingOptions <= 1){
-                //NOTHING
-            } else
-            {
-                for ($i=0; $i < sizeof($this->options); $i++) 
-                { 
-                    if($this->options && $i <10){
-                        $this->number = $i;
-                        $this->remainingOptions = 0;
-                    }
-                }
-            }
-        }
-
         public function getOptions()
         {
             return $this->options;
@@ -48,12 +32,12 @@
             return ($this->remainingOptions == 0);
         }
 
-        public function changeOption($number =  NULL)
+        public function changeOption($number =  NULL, $newValue = NULL)
         {
-            if (!is_null($number) && !$this->isDone())
+            if (!is_null($number) && !$this->isDone() && $number < 10 && !is_null($newValue))
             {
-                $this->options[$number] = !$this->options[$number];
-                $this->remainingOptions += ($this->options[$number] ? 1 : -1 );
+                $this->options[$number] = $newValue;
+                $this->remainingOptions += ($newValue ? 1 : -1 );
             }
         }
 

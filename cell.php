@@ -12,6 +12,30 @@
             $this->remainingOptions = 9;
         }
 
+        public function resolve()
+        {
+            if ($this->remainingOptions <= 1){
+                //NOTHING
+            } else
+            {
+                for ($i=0; $i < sizeof($this->options); $i++) 
+                { 
+                    if($this->options && $i <10){
+                        $this->number = $i;
+                        $this->remainingOptions = 0;
+                    }
+                }
+            }
+        }
+
+        public function removeOptionsCell($option)
+        {
+            $this->options[$option] = false;
+            if($this->remainingOptions > 0){
+                $this->remainingOptions--;
+            }
+        }
+
         public function getOptions()
         {
             return $this->options;

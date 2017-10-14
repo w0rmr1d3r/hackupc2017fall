@@ -4,6 +4,7 @@
         private $cells;
         private $done;
         private $rowSize;
+        private $realRowSize;
         private $remainingCellsToBeDone;
 
         public function __construct()
@@ -21,7 +22,30 @@
             ];
             $this->done = false;
             $this->rowSize = 1;
-            $this->remainingCellsToBeDone = 9;
+            $this->realRowSize = 3;
+        }
+        
+        public function removeOptionsRow($row, $option){
+            $until = $row*$this->realRowSize+$this->realRowSize;
+            for ($i=$row*$this->realRowSize; $i < $until; $i++) { 
+                $this->cells[$i]->removeOptionsCell($option);
+                //echo "ESPECIAL: ".$this->cells[$i]->getNumber()." ".$row." ";
+            }
+
+            //DEBUG
+            //$this->showCells();
+        }
+
+        public function removeOptionsCol($col, $option){
+            $until = $col+9;
+            for ($i=$col; $i < $until; $i+=3) { 
+                $this->cells[$i]->removeOptionsCell($option);
+            }
+        }
+
+        public function getSizeRows()
+        {
+            return $this->realRowSize;
         }
 
         public function getCell($cellPosition = -1)
@@ -58,17 +82,36 @@
             $row = "";
             switch ($index) {
                 case 0:
-                    # code...
+                    $row = $this->cells[0]->getNumber().$this->cells[1]->getNumber().$this->cells[2]->getNumber();
                     break;
                 case 1:
-                    # code...
+                    $row = $this->cells[3]->getNumber().$this->cells[4]->getNumber().$this->cells[5]->getNumber();
                     break;
                 case 2:
-                    # code...
+                    $row = $this->cells[6]->getNumber().$this->cells[7]->getNumber().$this->cells[8]->getNumber();
                     break;
-                
                 default:
-                    # code...
+                    $row = -1;
+                    break;
+            }
+            return $row;
+        }
+
+        public function getCol($index)
+        {
+            $row = "";
+            switch ($index) {
+                case 0:
+                    $row = $this->cells[0]->getNumber().$this->cells[3]->getNumber().$this->cells[6]->getNumber();
+                    break;
+                case 1:
+                    $row = $this->cells[1]->getNumber().$this->cells[4]->getNumber().$this->cells[7]->getNumber();
+                    break;
+                case 2:
+                    $row = $this->cells[2]->getNumber().$this->cells[5]->getNumber().$this->cells[8]->getNumber();
+                    break;
+                default:
+                    $row = -1;
                     break;
             }
             return $row;
@@ -80,7 +123,8 @@
             $actualPosition = 0;
             foreach ($this->cells as $cell) 
             {
-                $fila = $fila.$cell->getNumber();
+                //$fila = $fila.$cell->getNumber();
+                $fila = $fila.$cell->getRemainingOptions();
 
                 if ($this->rowSize < $actualPosition)
                 {

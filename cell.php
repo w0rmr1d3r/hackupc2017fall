@@ -41,6 +41,14 @@
             }
         }
 
+        public function changeAllOptions($newValue)
+        {
+            for ($i = 0; $i < count($this->options); $i++)
+            {
+                $this->options[$i] = $newValue;
+            }
+        }
+
         public function setNumber($finalNumber = NULL)
         {
             if (!is_null($finalNumber))

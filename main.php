@@ -6,7 +6,7 @@
 
     //$board = initBoard();
     $board = initBoardTwo();
-    showBoard($board);
+    //showBoard($board);
     resolveBoard($board);
-    showBoard($board);
+    //showBoard($board);
 ?>

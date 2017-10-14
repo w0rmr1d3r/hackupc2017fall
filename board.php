@@ -4,6 +4,7 @@
         private $boxes;
         private $done;
         private $boardSize;
+        
         public function __construct()
         {
             $this->boxes = [

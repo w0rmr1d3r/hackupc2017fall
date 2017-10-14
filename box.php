@@ -26,14 +26,10 @@
         }
 
         public function removeOptionsRow($row, $option){
-            $until = $row*$this->realRowSize+$this->realRowSize;
-            for ($i=$row*$this->realRowSize; $i < $until; $i++) { 
-                $this->cells[$i]->changeOption($option - 1, False);
-                //echo "ESPECIAL: ".$this->cells[$i]->getNumber()." ".$row." ";
+            $until = $row * $this->realRowSize + $this->realRowSize;
+            for ($i = $row * $this->realRowSize; $i < $until; $i++) { 
+                $this->cells[$i]->changeOption($option, True);
             }
-
-            //DEBUG
-            //$this->showCells();
         }
 
         public function removeOptionsCol($col, $option){

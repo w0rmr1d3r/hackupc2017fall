@@ -206,20 +206,25 @@
     function removeOptionsRow(&$board, $rowNumber)
     {
         $row = $board->getRow($rowNumber);
-        //$rowString = (string) $rowString;
-        var_dump("hola");
-        var_dump($row);
 
-        $options = explode('-', $rowString);
-        //var_dump($options);
+        $numbersDone = [False, False, False, False, False, False, False, False, False];
 
-        for ($i=0; $i < sizeof($options); $i++) 
-        { 
-            if($options[$i] != '')
+        foreach ($row as $rowInBox)
+        {
+            foreach ($rowInBox as $number)
             {
-                $board->removeOptionsRow($rowNumber, $options[$i]);    
+                if ($number != '-')
+                {
+                    $numbersDone[$number - 1] = True;
+                } 
             }
-        }   
+        }
+
+        $option = array_search(False, $numbersDone);
+        //var_dump($option);
+        $board->removeOptionsRow($rowNumber, $option);    
+
+        var_dump($board->getBox(6)->getCell(8));
     }
 
     function resolveRow(&$board, $row)

@@ -12,7 +12,7 @@
             $this->remainingOptions = 9;
         }
 
-        public function resolve()
+       public function resolve()
         {
             if ($this->remainingOptions <= 1){
                 //NOTHING

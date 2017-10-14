@@ -50,17 +50,26 @@
 
 
         //DEBUG
-        removeOptionsCol($board, 1);
-        removeOptionsRow($board, 1);
 
         for ($i=0; $i < 9; $i++) { 
+            resolveRow($board, $i);
             removeOptionsCol($board, $i);
+            resolveRow($board, $i);
             removeOptionsRow($board, $i);
         }
+
+        foreach ($board->getBoxes() as $box ) 
+        {
+            resolveBox($box);
+            removeOptionsBox($box);
+        }
+
         resolveTodo($board);
         echo"\n";
         $board->print();
     }
+
+
 
     function resolveCell(&$cell)
     {
@@ -105,8 +114,20 @@
 
         foreach ($board->getBoxes() as $box) {
             foreach ($box->getCells() as $cell) {
+                resolveCell($cell);
+                
+/*
+                ////////////////////////////////
+                //DEBUG
                 $cell->resolve();
-            }
+
+                //DEBUG
+                if($cell->getNumber() != NULL){
+                    var_dump($cell->getNumber());
+                    removeOptionsCol($board, $cell->getNumber());
+                    removeOptionsRow($board, $cell->getNumber());
+                }
+*/            }
         }
     }
 
@@ -127,6 +148,25 @@
             }
         }   
     }
+
+    function resolveRow(&$board, $row)
+    {
+        foreach ($board->selectBoxesByRow($row) as $box) {
+            foreach ($box->selectCellsByRow($row) as $cell) {
+                resolveCell($cell);
+            }
+        }       
+    }
+
+    function resolveCol(&$board, $col)
+    {
+        foreach ($board->selectBoxesByCol($col) as $box) {
+            foreach ($box->selectCellsByCol($col) as $cell) {
+                resolveCell($cell);
+            }
+        }       
+    }
+
 
     function removeOptionsCol(&$board, $col)
     {

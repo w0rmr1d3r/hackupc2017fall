@@ -9,9 +9,33 @@
         public function __construct()
         {
             $this->options = [True, True, True, True, True, True, True,True, True];
-            $this->number = 0;
+            $this->number = '-';
             $this->remainingOptions = 9;
             $this->done = False;
+        }
+
+        public function resolve()
+        {
+            if ($this->remainingOptions <= 1){
+                //NOTHING
+            } else
+            {
+                for ($i=0; $i < sizeof($this->options); $i++) 
+                { 
+                    if($this->options && $i <10){
+                        $this->number = $i;
+                        $this->remainingOptions = 0;
+                    }
+                }
+            }
+        }
+
+        public function removeOptionsCell($option)
+        {
+            $this->options[$option] = false;
+            if($this->remainingOptions > 0){
+                $this->remainingOptions--;
+            }
         }
 
         public function getOptions()
@@ -36,10 +60,10 @@
 
         public function changeOption($number =  NULL)
         {
-            if (!is_null($number)
+            if (!is_null($number))
             {
                 $this->remainingOptions = ($this->options[$number] ?
-                    $remainingOptions-- : $vremainingOptions++ );
+                   $remainingOptions-- : $vremainingOptions++ );
                 $this->options[$number] = !$this->options[$number];
             }
         }

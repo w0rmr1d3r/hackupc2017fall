@@ -28,14 +28,6 @@
             }
         }
 
-        public function removeOptionsCell($option)
-        {
-            $this->options[$option] = false;
-            if($this->remainingOptions > 0){
-                $this->remainingOptions--;
-            }
-        }
-
         public function getOptions()
         {
             return $this->options;
@@ -58,10 +50,10 @@
 
         public function changeOption($number =  NULL)
         {
-            if (!is_null($number))
+            if (!is_null($number) && !$this->isDone())
             {
-                $this->remainingOptions += ($this->options[$number] ? -1 : 1 );
                 $this->options[$number] = !$this->options[$number];
+                $this->remainingOptions += ($this->options[$number] ? 1 : -1 );
             }
         }
 

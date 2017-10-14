@@ -155,5 +155,19 @@
                 $numbersDone[$cell->getNumber() - 1] = True;
             }
         }
+
+        foreach ($box->getCells() as $cell)
+        {
+            if (!$cell->isDone())
+            {
+                for ($i = 0; $i < count($cell->getOptions()); $i++)
+                {
+                    if ($numbersDone[$i])
+                    {
+                        $cell->changeOption($i);
+                    }
+                }
+            }
+        }
     }
 ?>

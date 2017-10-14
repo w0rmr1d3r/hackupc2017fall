@@ -28,7 +28,7 @@
         public function removeOptionsRow($row, $option){
             $until = $row*$this->realRowSize+$this->realRowSize;
             for ($i=$row*$this->realRowSize; $i < $until; $i++) { 
-                $this->cells[$i]->removeOptionsCell($option);
+                $this->cells[$i]->changeOption($option - 1, False);
                 //echo "ESPECIAL: ".$this->cells[$i]->getNumber()." ".$row." ";
             }
 
@@ -155,16 +155,27 @@
 
         public function getRow($index)
         {
-            $row = "";
             switch ($index) {
                 case 0:
-                    $row = $this->cells[0]->getNumber().$this->cells[1]->getNumber().$this->cells[2]->getNumber();
+                    $row = [
+                        $this->cells[0]->getNumber(),
+                        $this->cells[1]->getNumber(),
+                        $this->cells[2]->getNumber()
+                    ];
                     break;
                 case 1:
-                    $row = $this->cells[3]->getNumber().$this->cells[4]->getNumber().$this->cells[5]->getNumber();
+                    $row = [
+                        $this->cells[3]->getNumber(),
+                        $this->cells[4]->getNumber(),
+                        $this->cells[5]->getNumber()
+                    ];
                     break;
                 case 2:
-                    $row = $this->cells[6]->getNumber().$this->cells[7]->getNumber().$this->cells[8]->getNumber();
+                    $row = [
+                        $this->cells[6]->getNumber(),
+                        $this->cells[7]->getNumber(),
+                        $this->cells[8]->getNumber()
+                    ];
                     break;
                 default:
                     $row = -1;

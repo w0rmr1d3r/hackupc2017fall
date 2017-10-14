@@ -98,10 +98,13 @@
 
         public function getRow($index)
         {
-            $row = "";
             $boxesRow = $this->selectBoxesByRow($index);
 
-            $row = $boxesRow[0]->getRow($index % 3).$boxesRow[1]->getRow($index % 3).$boxesRow[2]->getRow($index % 3);
+            $row = [
+                $boxesRow[0]->getRow($index % 3),
+                $boxesRow[1]->getRow($index % 3),
+                $boxesRow[2]->getRow($index % 3)
+            ];
 
             return $row;
         }
@@ -158,13 +161,16 @@
         {
             $matrix = "";
             $matrix = $matrix."_______________\n";
-            for ($i = 0; $i < $this->boardSize*3; $i+=3) 
+            for ($i = 0; $i < $this->boardSize * 3; $i += 3) 
             {
                 for ($j = 0; $j < $this->boxes[0]->getSizeRows(); $j++) {
-                    $matrix = $matrix.$this->boxes[$i]->getRow($j)." | ".$this->boxes[$i+1]->getRow($j)." | ".$this->boxes[$i+2]->getRow($j);
-                    $matrix = $matrix."\n";
+                    $matrix .= 
+                        $this->boxes[$i]->getRow($j).' | '
+                        .$this->boxes[$i + 1]->getRow($j).' | '
+                        .$this->boxes[$i + 2]->getRow($j);
+                    $matrix .= "\n";
                 }
-                $matrix = $matrix."_______________\n";
+                $matrix .= "_______________\n";
             }
             echo $matrix;
         }

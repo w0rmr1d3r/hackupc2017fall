@@ -5,6 +5,7 @@
         private $done;
         private $rowSize;
         private $realRowSize;
+        private $remainingCellsToBeDone;
 
         public function __construct()
         {
@@ -23,13 +24,7 @@
             $this->rowSize = 1;
             $this->realRowSize = 3;
         }
-
-        public function getCells()
-        {
-            return $this->cells;
-        } 
-
-
+        
         public function removeOptionsRow($row, $option){
             $until = $row*$this->realRowSize+$this->realRowSize;
             for ($i=$row*$this->realRowSize; $i < $until; $i++) { 
@@ -59,6 +54,27 @@
             {
                 return $this->cells[$cellPosition];
             }
+        }
+
+        public function getCells()
+        {
+            return $this->cells;
+        }
+
+        public function getRemainingCellsToBeDone()
+        {
+            $this->checkRemainingCellsToBeDone();
+            return $this->remainingCellsToBeDone;
+        }
+
+        private function checkRemainingCellsToBeDone()
+        {
+            $cellsDone = 0;
+            foreach ($this->cells as $cell)
+            {
+                $cellsDone += ($cell->isDone() ? 0 : 1);
+            }
+            $this->remainingCellsToBeDone = $cellsDone;
         }
 
         public function getRow($index)

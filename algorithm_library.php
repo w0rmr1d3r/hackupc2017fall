@@ -78,7 +78,6 @@
             if ($cell->getRemainingOptions() == 1)
             {
                 $cell->setNumber(array_search(True, $cell->getOptions()) + 1);
-                var_dump("cell resolved");
             }
         }
     }
@@ -194,6 +193,20 @@
             if ($cell->isDone())
             {
                 $numbersDone[$cell->getNumber() - 1] = True;
+            }
+        }
+
+        foreach ($box->getCells() as $cell)
+        {
+            if (!$cell->isDone())
+            {
+                for ($i = 0; $i < count($cell->getOptions()); $i++)
+                {
+                    if ($numbersDone[$i])
+                    {
+                        $cell->changeOption($i);
+                    }
+                }
             }
         }
     }

@@ -8,7 +8,7 @@
         public function __construct()
         {
             $this->options = [True, True, True, True, True, True, True,True, True];
-            $this->number = 0;
+            $this->number = '-';
             $this->remainingOptions = 9;
         }
 
@@ -36,7 +36,7 @@
         {
             if (!is_null($number))
             {
-                $this->remainingOptions = ($this->options[$number] ? $remainingOptions-- : $remainingOptions++ );
+                $this->remainingOptions += ($this->options[$number] ? -1 : 1 );
                 $this->options[$number] = !$this->options[$number];
             }
         }

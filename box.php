@@ -4,6 +4,7 @@
         private $cells;
         private $done;
         private $rowSize;
+        private $remainingCellsToBeDone;
 
         public function __construct()
         {
@@ -20,6 +21,7 @@
             ];
             $this->done = false;
             $this->rowSize = 1;
+            $this->remainingCellsToBeDone = 9;
         }
 
         public function getCell($cellPosition = -1)
@@ -33,6 +35,22 @@
         public function getCells()
         {
             return $this->cells;
+        }
+
+        public function getRemainingCellsToBeDone()
+        {
+            $this->checkRemainingCellsToBeDone();
+            return $this->remainingCellsToBeDone;
+        }
+
+        private function checkRemainingCellsToBeDone()
+        {
+            $cellsDone = 0;
+            foreach ($this->cells as $cell)
+            {
+                $cellsDone += ($cell->isDone() ? 0 : 1);
+            }
+            $this->remainingCellsToBeDone = $cellsDone;
         }
 
         public function getRow($index)

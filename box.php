@@ -30,6 +30,11 @@
             }
         }
 
+        public function getCells()
+        {
+            return $this->cells;
+        }
+
         public function getRow($index)
         {
             $row = "";

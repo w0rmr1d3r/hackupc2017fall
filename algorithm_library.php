@@ -50,7 +50,7 @@
 
     function resolveCell(&$cell)
     {
-        if ($cell->getRemainingOptions() == 1)
+        if ($cell->isDone())
         {
             $cell->setNumber(array_search(true, $cell->getOptions()) + 1);
         }
@@ -58,6 +58,9 @@
 
     function resolveBox(&$box)
     {
-
+        foreach ($box->getCells() as $cell)
+        {
+            resolveCell($cell);
+        }
     }
 ?>

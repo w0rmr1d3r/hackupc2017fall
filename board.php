@@ -165,9 +165,9 @@
             {
                 for ($j = 0; $j < $this->boxes[0]->getSizeRows(); $j++) {
                     $matrix .= 
-                        $this->boxes[$i]->getRow($j).' | '
-                        .$this->boxes[$i + 1]->getRow($j).' | '
-                        .$this->boxes[$i + 2]->getRow($j);
+                        $this->boxes[$i]->getRow($j)[0].$this->boxes[$i]->getRow($j)[1].$this->boxes[$i]->getRow($j)[2].' | '
+                        .$this->boxes[$i + 1]->getRow($j)[0].$this->boxes[$i + 1]->getRow($j)[1].$this->boxes[$i + 1]->getRow($j)[2].' | '
+                        .$this->boxes[$i + 2]->getRow($j)[0].$this->boxes[$i + 2]->getRow($j)[1].$this->boxes[$i + 2]->getRow($j)[2];
                     $matrix .= "\n";
                 }
                 $matrix .= "_______________\n";

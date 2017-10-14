@@ -73,7 +73,6 @@
             $cellNotDone = NULL;
             foreach ($box->getCells() as $cell)
             {
-                //var_dump($cell);
                 if ($cell->isDone())
                 {
                     $numbersDone[$cell->getNumber() - 1] = True;
@@ -82,10 +81,21 @@
                 {
                     $cellNotDone = $cell;
                 }
-                //var_dump($cellNotDone);
-                
             }
             $cellNotDone->setNumber(array_search(False, $numbersDone) + 1);
+        }
+    }
+
+    function removeOptionsBox(&$box)
+    {
+        $numbersDone = [False, False, False, False, False, False, False, False, False];
+
+        foreach ($box->getCells() as $cell)
+        {
+            if ($cell->isDone())
+            {
+                $numbersDone[$cell->getNumber() - 1] = True;
+            }
         }
     }
 ?>

@@ -119,6 +119,25 @@
         }   
     }
 
+    function resolveRow(&$board, $row)
+    {
+        foreach ($board->selectBoxesByRow($row) as $box) {
+            foreach ($box->selectCellsByRow($row) as $cell) {
+                resolveCell($cell);
+            }
+        }       
+    }
+
+    function resolveCol(&$board, $col)
+    {
+        foreach ($board->selectBoxesByCol($col) as $box) {
+            foreach ($box->selectCellsByCol($col) as $cell) {
+                resolveCell($cell);
+            }
+        }       
+    }
+
+
     function removeOptionsCol(&$board, $col)
     {
         $rowString = "";

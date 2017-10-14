@@ -45,7 +45,7 @@
             return $col;
         }
 
-        private function selectBoxesByCol($index)
+        public function selectBoxesByCol($index)
         {
             $col;
             switch ($index) {
@@ -106,7 +106,7 @@
             return $row;
         }
 
-        private function selectBoxesByRow($index)
+        public function selectBoxesByRow($index)
         {
             $row;
             switch ($index) {

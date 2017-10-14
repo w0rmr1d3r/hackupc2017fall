@@ -24,7 +24,7 @@
             $this->rowSize = 1;
             $this->realRowSize = 3;
         }
-        
+
         public function removeOptionsRow($row, $option){
             $until = $row*$this->realRowSize+$this->realRowSize;
             for ($i=$row*$this->realRowSize; $i < $until; $i++) { 
@@ -75,6 +75,82 @@
                 $cellsDone += ($cell->isDone() ? 0 : 1);
             }
             $this->remainingCellsToBeDone = $cellsDone;
+        }
+
+        public function selectCellsByCol($index)
+        {
+            $col;
+            switch ($index) {
+                case 0:
+                case 1:
+                case 2:
+                    $col = [
+                    $this->cells[0],
+                    $this->cells[3],
+                    $this->cells[6]
+                    ];
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    $col = [
+                    $this->cells[1],
+                    $this->cells[4],
+                    $this->cells[7]
+                    ];
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    $col = [
+                    $this->cells[2],
+                    $this->cells[5],
+                    $this->cells[8]
+                    ];break;
+
+                default:
+                    $col = -1;
+                    break;
+            }
+            return $col;
+        }
+
+        public function selectCellsByRow($index)
+        {
+            $row;
+            switch ($index) {
+                case 0:
+                case 1:
+                case 2:
+                    $row = [
+                    $this->cells[0],
+                    $this->cells[1],
+                    $this->cells[2]
+                    ];
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    $row = [
+                    $this->cells[3],
+                    $this->cells[4],
+                    $this->cells[5]
+                    ];
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    $row = [
+                    $this->cells[6],
+                    $this->cells[7],
+                    $this->cells[8]
+                    ];break;
+
+                default:
+                    $row = -1;
+                    break;
+            }
+            return $row;
         }
 
         public function getRow($index)
